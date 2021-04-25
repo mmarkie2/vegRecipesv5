@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/ingredients','App\Http\Controllers\IngredientController@getIngredients' );
-Route::post('/ingredients/add','App\Http\Controllers\IngredientController@addIngredient');
+Route::get('/ingredients/','App\Http\Controllers\IngredientController@getIngredients' );
+Route::post('/ingredient/','App\Http\Controllers\IngredientController@addIngredient');
