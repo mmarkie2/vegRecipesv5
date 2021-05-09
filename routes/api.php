@@ -1,5 +1,6 @@
 <?php
 
+use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->group(function()
+{
+    Route::get('/user', function (Request $request) {
     return $request->user();
+
 });
 
 
-Route::get('/ingredients/','App\Http\Controllers\IngredientController@getIngredients' );
-Route::post('/ingredient/','App\Http\Controllers\IngredientController@addIngredient');
+});
+
+JsonApi::register('default')->routes(function ($api) {
+    $api->resource('ingredients');
+});
+JsonApi::register('default')->routes(function ($api) {
+    $api->resource('recipes');
+});
+
+
